@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block titulo %} Mis productos {% endblock %}
+
+{% block contenido_principal %}
+<h2>Mis publicaciones</h2>
+<div class="table-responsive">
+    <table class="table table-hover" id="misPublicaciones">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th class="col-md-1">Precio</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.precio }} €</td>
+            <td>
+                <a href="/producto/eliminar/{{ producto._id.toString() }}"
+                   id="eliminar" >Eliminar</a> <br>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<a id="buttonAdd" style="font-size: 15px" href="/producto/agregar"> <i class="glyphicon glyphicon-plus"></i> Publicar oferta</a>
+
+{% endblock %}
