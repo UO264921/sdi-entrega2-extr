@@ -1,6 +1,20 @@
 module.exports = function (app, swig, gestorUsuarios, gestorProductos) {
 
-    app.get("/iniciar", function (req, res) {
+	app.get('/', function(req,res){
+		if(req.session.usuario) {
+			if(req.session.usuario === 'admin@admin.com'){
+				res.redirect('/tienda');
+			}
+			else {
+				res.redirect('/publicaciones');
+			}
+		}
+		else{
+			res.redirect('/iniciar');
+		}
+	});
+
+   app.get("/iniciar", function (req, res) {
         let respuesta = swig.renderFile('views/bhome.html', {});
         res.send(respuesta);
     });
